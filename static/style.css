@@ -3,29 +3,37 @@ body {
 }
 
 .container{
-    max-width:800px;
+    max-width:900px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 25px;
 
 }
 
 h1{
+    color: #4682B4;
+    padding-right: 5%;
     text-align: center;
 
+}
+
+h2{
+    color: #4682B4;
+    padding-right: 5%;
+    text-align: center;
 }
 
 form{
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 input[type=text]{
-    width:70%;
-    padding: 12px 20px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width:75%;
+    padding: 15px 25px;
+    margin-right: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }
 
 button[type=submit]{
@@ -47,15 +55,32 @@ button[type=submit]:hover {
 }
 
 .result{
-    width: 50%;
-    margin-left:20%;
-    margin-bottom: 10px;
-    padding: 20px;
+    width: 60%;
+    margin-left:25%;
+    margin-bottom: 15px;
+    padding: 25px;
     background-color: #ddd;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 h3{
-    margin-bottom: 20px;    
+    margin-bottom: 25px;    
 }
+
+/*html { 
+    background: url(image1.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+*/
+
+body {
+    background-image: url('./image1.jpeg');  /* Adjust the path as necessary */
+    background-size: 80% auto; /* Cover the entire page */
+    background-position: center 29%; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+

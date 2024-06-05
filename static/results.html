@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Search Results</title>
+    <title>InquireNet</title>
 
     <!--adding a CSS file to our HTML-->
     <link rel="stylesheet" type="text/css" href="./static/style.css">
@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class ="container">
-        <h1> Web Search Results </h1>
+        <h1>InquireNet </h1>
         <form method="post" action="/websearch">
             <input type="text" placeholder="Enter your search query" value="{{query}}" name="query">
             <button type="submit">Search</button>
@@ -31,8 +31,10 @@
         {%endfor%}
     </div>
     {%else%}
-    <h1>No results found for your query.</h1>
+    <h1>No results found for your query</h1>
     {%endif%}
 
 </body>
 </html>
+
+<!--this page is what is displayed when user enters terms at the engine (after searching)-->

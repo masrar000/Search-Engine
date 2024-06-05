@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import sqlite3
+import mysql.connector
 
 app=Flask(__name__, template_folder="./static") #Defining a flask app
 
@@ -14,19 +14,48 @@ def home():
 def search():
     #get query from request
     query=request.form["query"]
+    print("*"*10)
+    print("Query:", query)
+    print("*"*10)
 
     if query=="":
         render_template("websearch.html")
     
-    #Connect to the sqlite database
-    conn=sqlite3.connect("crawled_pages.db")
-    cursor=conn.cursor()
-
+    # MySQL connection parameters
+    mySQLparams = {
+        'host': 'localhost',
+        'user': 'root',
+        'database': 'MY_CUSTOM_BOT',
+        'password': '1234'
+    }
+    
+    connection = mysql.connector.connect(**mySQLparams)
+    cursor = connection.cursor()
+    
+    cols = ["childhood_count", "cancer_count", "early_count", "diagnosis_count", "methods_count"]
+    q_string = ""
+    
+    for term in query.split(" "):
+        c = term + "_count"
+        if q_string == "":
+            q_string = q_string + c
+        else:
+            q_string = q_string + " + " + c
+    
+    sql_query = '''SELECT url, title from 
+                (SELECT sr.url, sr.title, sum(''' + q_string + ''') 
+                 as total_sum FROM search_results_v2 sr 
+                 inner join URL_frequency uf 
+                 on sr.url_id = uf.url_id 
+                group by sr.url_id
+                order by total_sum desc) a'''
+    
     #Search for websites that match query in their cleaned_content
-    cursor.execute("SELECT url, title FROM pages WHERE cleaned_content LIKE ? ORDER BY pagerank DESC", ("%"+ query +"%",))
+    cursor.execute(sql_query)
+                   
     urls=cursor.fetchall()
-    conn.close() #close the connection
-
+    connection.close() #close the connection
+    print("urls",urls)
     #Render the URLS that match the query as HTML template
     return render_template("results.html",urls=urls, query=query)
 
