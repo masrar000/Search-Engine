@@ -89,9 +89,6 @@ crawled_pages.db: Database file for storing crawled pages.
 # Contributing
 Contributions are welcome! Please create a pull request or submit an issue for any improvements or bug fixes.
 
-# License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 # Acknowledgements
 
